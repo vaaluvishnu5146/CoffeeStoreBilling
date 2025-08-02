@@ -1,0 +1,70 @@
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.coffee_billing_layout {
+  width: 100%;
+  display: flex;
+  column-gap: 20px;
+  padding: 50px;
+  box-sizing: border-box;
+  height: calc(100vh - 100px);
+}
+
+.card {
+  background-color: rgb(241, 240, 240);
+  border-radius: 10px;
+}
+
+.items_listing_container {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.billing_area {
+  width: 20%;
+  height: 100%;
+}
+
+.product_card {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: white;
+  border: 3px solid black;
+  width: calc(100% / 4);
+  height: 260px;
+  color: black;
+  align-items: center;
+  > .product_image {
+    width: 50%;
+    border-radius: 100%;
+  }
+  > .product_name {
+    text-align: start;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  > .counter_btn {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    > button {
+      width: 80px;
+      height: 40px;
+      background-color: rgb(211, 248, 211);
+      border-radius: 20px;
+      color: black;
+      border: 3px solid black;
+    }
+  }
+}
