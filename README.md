@@ -1,6 +1,8 @@
-Uploading Screen Recording 2025-08-09 at 8.23.52 PM.mov…
+
+https://github.com/user-attachments/assets/f2f9c795-8852-44af-afce-2af58f8e91c2
 
 
 1. npm install
 2. npm run dev
+
 
