@@ -73,7 +73,7 @@ export default function CoffeeBillingLayout() {
 
   function decrementQty(id = 0) {
     const itemsCopy = cart.map((_p) => {
-      if (_p.id == id) {
+      if (_p.id == id && _p.qty > 1) {
         _p.qty -= 1;
       }
       return _p;

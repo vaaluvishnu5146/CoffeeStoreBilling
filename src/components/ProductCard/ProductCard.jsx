@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import capuchino from "../../assets/capuchino.jpeg";
+import React from "react";
 
 export default function ProductCard({
   data = {},
@@ -11,7 +10,6 @@ export default function ProductCard({
 }) {
   return (
     <div className="product_card">
-      <img className="product_image" src={data.image} />
       <p className="product_name">{data.name}</p>
       {isAddedToCart ? (
         <div className="counter_btn">

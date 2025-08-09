@@ -31,6 +31,7 @@
   flex-wrap: wrap;
   gap: 10px;
   justify-content: space-between;
+  align-content: flex-start;
 }
 
 .billing_area {
@@ -86,13 +87,9 @@
   background-color: white;
   border: 3px solid black;
   width: calc((100% / 4) - 20px);
-  height: 230px;
+  height: 120px;
   color: black;
   align-items: center;
-  > .product_image {
-    width: 50%;
-    border-radius: 100%;
-  }
   > .product_name {
     text-align: start;
     font-size: 20px;
