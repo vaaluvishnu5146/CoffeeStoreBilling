@@ -1,27 +1,23 @@
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
-export default function Counter(props) {
+export default function Counter() {
+  // `count` is the state variable, `setCount` is the updater function.
   const [count, setCount] = useState(0);
+  const [evenCount, setEvenCount] = useState(false);
 
-  function increment() {
-    console.log("Increment");
-    setCount((c) => c + 1);
-    console.log(count);
-  }
-  function decrement() {
-    console.log("Decrement");
-    setCount((c) => c - 1);
-    console.log(count);
-  }
+  useLayoutEffect(() => {
+    if (count % 2 === 0) {
+      setEvenCount(true);
+    } else {
+      setEvenCount(false);
+    }
+  }, [count]);
 
   return (
-    <>
-      <h1>{props.title}</h1>
-      <h2>{count}</h2>
-      <div>
-        <button onClick={decrement}>-</button>
-        <button onClick={increment}>+</button>
-      </div>
-    </>
+    <div>
+      <p>You clicked {count} times</p>
+      {evenCount && <p>Count is even</p>}
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
   );
 }

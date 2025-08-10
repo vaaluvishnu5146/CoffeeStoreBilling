@@ -10,7 +10,7 @@ export default function ProductCard({
 }) {
   return (
     <div className="product_card">
-      <p className="product_name">{data.name}</p>
+      <p className="product_name">{data.title}</p>
       {isAddedToCart ? (
         <div className="counter_btn">
           <button onClick={() => decrement(data.id)}>-</button>

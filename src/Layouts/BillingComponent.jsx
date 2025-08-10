@@ -1,55 +1,26 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard/ProductCard";
 import CartEmpty from "../assets/emptycart.png";
+import useTheme from "../hooks/useTheme";
 
-export default function CoffeeBillingLayout() {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Hot Coffee",
-      qty: 0,
-      price: 120,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-    {
-      id: 2,
-      name: "Cold Coffee",
-      qty: 0,
-      price: 120,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-    {
-      id: 3,
-      name: "Cold Tea",
-      qty: 0,
-      price: 130,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-    {
-      id: 4,
-      name: "Hot Tea",
-      qty: 0,
-      price: 130,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-    {
-      id: 5,
-      name: "Coconut Pudding",
-      qty: 0,
-      price: 150,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-  ]);
-  const [cart, setCart] = useState([]); // [{ id: 1, quantity: 3 }]
+export default function BillingComponent() {
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
   const [cartTotal, setCartTotal] = useState({
     total: 0,
     grandTotal: 0,
   });
+  const [theme] = useTheme();
+
+  useEffect(() => {
+    console.log("Theme changes");
+  }, [theme]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data.products));
+  }, []);
 
   useEffect(() => {
     const total = calculateTheTotal(cart);
@@ -57,7 +28,7 @@ export default function CoffeeBillingLayout() {
     setCartTotal({
       ...cartTotal,
       total,
-      grandTotal,
+      grandTotal: parseFloat(grandTotal.toFixed(2)),
     });
   }, [cart]);
 
@@ -106,7 +77,7 @@ export default function CoffeeBillingLayout() {
     } else {
       total = items.reduce((prev, curr) => (prev += curr.qty * curr.price), 0);
     }
-    return total;
+    return parseFloat(total.toFixed(2));
   }
 
   function clearCurrentBilling() {
@@ -129,6 +100,7 @@ export default function CoffeeBillingLayout() {
             isAddedToCart={checkProductInTheCart(product.id)}
             handleAddToCart={handleAddToCart}
             cartQuantity={checkProductQuantityInTheCart(product.id)}
+            theme={theme}
           />
         ))}
       </div>
@@ -137,8 +109,8 @@ export default function CoffeeBillingLayout() {
           <>
             <div className="billing_items_listing">
               {cart.map((_product, index) => (
-                <div className="billng_item">
-                  <p>{_product.name}</p>
+                <div key={index} className="billng_item">
+                  <p>{_product.title}</p>
                   <p>
                     {_product.qty} x {_product.price}
                   </p>
