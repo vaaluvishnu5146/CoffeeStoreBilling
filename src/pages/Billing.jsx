@@ -2,54 +2,65 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "../components/ProductCard/ProductCard";
 import CartEmpty from "../assets/emptycart.png";
 
+const dummyData = [
+  {
+    id: 1,
+    name: "Hot Coffee",
+    qty: 0,
+    price: 120,
+    image:
+      "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
+  },
+  {
+    id: 2,
+    name: "Cold Coffee",
+    qty: 0,
+    price: 120,
+    image:
+      "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
+  },
+  {
+    id: 3,
+    name: "Cold Tea",
+    qty: 0,
+    price: 130,
+    image:
+      "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
+  },
+  {
+    id: 4,
+    name: "Hot Tea",
+    qty: 0,
+    price: 130,
+    image:
+      "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
+  },
+  {
+    id: 5,
+    name: "Coconut Pudding",
+    qty: 0,
+    price: 150,
+    image:
+      "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
+  },
+];
+
 export default function Billing() {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: "Hot Coffee",
-      qty: 0,
-      price: 120,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-    {
-      id: 2,
-      name: "Cold Coffee",
-      qty: 0,
-      price: 120,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-    {
-      id: 3,
-      name: "Cold Tea",
-      qty: 0,
-      price: 130,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-    {
-      id: 4,
-      name: "Hot Tea",
-      qty: 0,
-      price: 130,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-    {
-      id: 5,
-      name: "Coconut Pudding",
-      qty: 0,
-      price: 150,
-      image:
-        "https://globalassets.starbucks.com/digitalassets/products/bev/CaffeLatte.jpg?impolicy=1by1_tight_288&crop=495,495,810,810&wid=288&hei=288&qlt=85",
-    },
-  ]);
+  const [products, setProducts] = useState(dummyData || []);
   const [cart, setCart] = useState([]); // [{ id: 1, quantity: 3 }]
   const [cartTotal, setCartTotal] = useState({
     total: 0,
     grandTotal: 0,
   });
+
+  useEffect(() => {
+    /**
+     * METHOD - GET
+     */
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data.products));
+  }, []);
 
   useEffect(() => {
     const total = calculateTheTotal(cart);

@@ -8,9 +8,10 @@ import AppSettings from "./pages/AppSettings";
 import Appbar from "./components/Appbar/Appbar";
 import { useState } from "react";
 import NotFound from "./pages/NotFound";
+import UserManagement from "./pages/UserManagement";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   return (
     <div>
       {!loggedIn && (
@@ -30,6 +31,7 @@ function App() {
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/appSettings" element={<AppSettings />} />
+            <Route path="/users" element={<UserManagement />} />
           </Routes>
         </>
       )}

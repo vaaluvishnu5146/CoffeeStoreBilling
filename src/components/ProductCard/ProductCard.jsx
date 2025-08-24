@@ -10,7 +10,7 @@ export default function ProductCard({
 }) {
   return (
     <div className="w-full h-[120px] rounded-sm bg-white p-3 border-2 border-black">
-      <p className="text-xl text-bold mb-3">{data.name}</p>
+      <p className="text-xl text-bold mb-3">{data.title}</p>
       {isAddedToCart ? (
         <div className="flex gap-x-4 items-center">
           <button

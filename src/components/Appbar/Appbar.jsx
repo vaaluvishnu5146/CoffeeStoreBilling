@@ -22,6 +22,9 @@ export default function Appbar() {
           <li>
             <Link to={"/appSettings"}>App Settings</Link>
           </li>
+          <li>
+            <Link to={"/users"}>Users Management</Link>
+          </li>
         </ul>
       </div>
     </div>
